@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Conversation, Message } from '../types';
 import { generateId } from '../utils';
-import { ArrowLeft, Send, X } from 'lucide-react';
+import { ArrowLeft, Send, X, Copy, Check } from 'lucide-react';
 
 interface ChatAreaProps {
   conversation: Conversation | null;
@@ -11,6 +11,7 @@ interface ChatAreaProps {
 
 export function ChatArea({ conversation, onBack, onSendMessage }: ChatAreaProps) {
   const [inputText, setInputText] = useState('');
+  const [copied, setCopied] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -41,6 +42,14 @@ export function ChatArea({ conversation, onBack, onSendMessage }: ChatAreaProps)
     }
   };
 
+  const handleCopy = () => {
+    if (conversation) {
+      navigator.clipboard.writeText(conversation.phone);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
     <div className="flex flex-col h-full flex-1 bg-[#050505] min-w-0 relative">
       {/* Background Overlay */}
@@ -59,7 +68,16 @@ export function ChatArea({ conversation, onBack, onSendMessage }: ChatAreaProps)
           </button>
           <div className="min-w-0">
             <h2 className="text-xl font-medium text-white truncate">{conversation.name}</h2>
-            <p className="text-xs text-blue-400 font-mono tracking-tight truncate">{conversation.phone} • Active Now</p>
+            <div className="flex items-center gap-2">
+              <p className="text-xs text-blue-400 font-mono tracking-tight truncate">{conversation.phone} • Active Now</p>
+              <button 
+                onClick={handleCopy}
+                className="text-white/40 hover:text-white transition-colors flex items-center"
+                title="Copy phone number"
+              >
+                {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
+              </button>
+            </div>
           </div>
         </div>
         
