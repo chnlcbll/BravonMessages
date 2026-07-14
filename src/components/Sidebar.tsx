@@ -31,7 +31,7 @@ export function Sidebar({
   isMobileViewActive
 }: SidebarProps) {
   return (
-    <div className={`flex flex-col h-full bg-[#080808] border-r border-white/10 ${isMobileViewActive ? 'hidden md:flex' : 'flex'} w-full md:w-80 lg:w-[360px] shrink-0`}>
+    <div className={`flex flex-col h-full bg-[#080808] border-r border-white/10 ${isMobileViewActive ? 'flex' : 'hidden md:flex'} w-full md:w-80 lg:w-[360px] shrink-0`}>
       <div className="px-6 py-4 border-b border-white/10 bg-[#0A0A0A]">
         <h1 className="text-lg font-bold tracking-tight text-white mb-4 flex items-center gap-3">
           <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>

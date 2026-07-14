@@ -137,7 +137,7 @@ export function ChatArea({ conversation, onBack, onSendMessage }: ChatAreaProps)
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder={`Reply to ${conversation.name.split(' ')[0]}...`}
-            className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-3 text-sm text-white focus:outline-none focus:border-white/20 placeholder:text-white/20 transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-full pl-6 pr-24 py-3 text-sm text-white focus:outline-none focus:border-white/20 placeholder:text-white/20 transition-colors"
           />
           <button
             type="submit"
